@@ -43,10 +43,11 @@ function imgSelected(event) {
 }
 
 
-
 //--------------------------------------------------------------------------------
 //------------------- IMPLEMENTACION ---------------------------------------------
 
 galleryList.insertAdjacentHTML('afterbegin', galleryHTML);
 
 galleryList.addEventListener("click", imgSelected);
+
+
