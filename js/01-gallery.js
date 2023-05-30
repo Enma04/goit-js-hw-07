@@ -1,16 +1,10 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-import * as basicLightbox from 'basicLightbox.min.js';
 
-const instance = basicLightbox.create(`
-    <div class="modal">
-        <p>
-            Your first lightbox with just a few lines of code.
-            Yes, it's really that simple.
-        </p>
-    </div>
-`);
+
+//--------------------------------------------------------------------------------
+//------------------- DEFINICIONES ---------------------------------------------
 
 const galleryList = document.querySelector(".gallery");
 const galleryHTML = galleryItems.map( (element) => 
@@ -25,11 +19,34 @@ const galleryHTML = galleryItems.map( (element) =>
         </a>
     </li>`).join("");
 
-console.log(galleryHTML);
+function imgSelected(event) {
+
+    event.preventDefault();
+    console.log(event);
+
+    if(event.target.nodeName !== "IMG") {
+        console.log("No es una imágen!");
+        return;
+    }
+    else {
+
+        const instance = basicLightbox.create(`
+            <div class="modal">
+                <p>
+                    <img src="${event.target.attributes.src.value}" width="800" height="600">
+                </p>
+            </div>
+        `);
+
+        instance.show();
+    }
+}
+
+
+
+//--------------------------------------------------------------------------------
+//------------------- IMPLEMENTACION ---------------------------------------------
+
 galleryList.insertAdjacentHTML('afterbegin', galleryHTML);
 
-let ligthBox = new SimpleLightbox('.gallery a', {
-    captionsData: "alt",
-    captionDelay: 250,
-});
-
+galleryList.addEventListener("click", imgSelected);
