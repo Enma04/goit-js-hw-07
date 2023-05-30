@@ -13,7 +13,7 @@ const galleryHTML = galleryItems.map( (element) =>
             <img
                 class="gallery__image"
                 src="${element.preview}"
-                data-source="large-image.jpg"
+                data_source="${element.original}"
                 alt="${element.description}"
             />
         </a>
@@ -33,7 +33,7 @@ function imgSelected(event) {
         const instance = basicLightbox.create(`
             <div class="modal">
                 <p>
-                    <img src="${event.target.attributes.src.value}" width="800" height="600">
+                    <img src="${event.target.attributes.data_source.value}" >
                 </p>
             </div>
         `);
